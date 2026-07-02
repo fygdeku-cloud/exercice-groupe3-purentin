@@ -1,11 +1,10 @@
 //Select HTML elements from the DOM
 
 const searchForm = document.getElementById('search-form');
-const searchForm = document.getElementById('search-form');
 const cityInput = document.getElementById('city-input');
 const weatherResult = document.getElementById('weather-result');
 
-// 2. Add an form submission
+//Add an form submission
 
 searchForm.addEventListener('submit', function(event) {
     event.preventDefault(); 
@@ -16,10 +15,10 @@ searchForm.addEventListener('submit', function(event) {
     }
 });
 
-// 3. Asynchronous function to fetch data from the API
+// Asynchronous function to fetch data from the API
 
 async function getWeatherData(city) {
-    const apiKey = "YOUR_API_KEY"; 
+    const apiKey = "d89ef0388c4b8e3df77554a422017437"; 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     // show a loading state
@@ -39,19 +38,14 @@ async function getWeatherData(city) {
 
     }catch (error){
         showError(error.message);
+        console.log("Aucune ville correspondante");
     }
 }
 
-// 4. Function to dynamically inject weather data into the HTML
+// Function to dynamically inject weather data into the HTML
 
 function displayWeather(data) {
     const temperature = data.main.temp;
-    const description = data.weather[0].description;
-    const iconCode = data.weather[0].icon;
-    const iconUrl = 'https://openweathermap.org/img/wn/${iconCode}@2x.png';
-    const cityName = data.name;
-
-   const temperature = data.main.temp;
     const description = data.weather[0].description;
     const iconCode = data.weather[0].icon;
     const iconUrl = 'https://openweathermap.org/img/wn/${iconCode}@2x.png';
@@ -67,6 +61,6 @@ function displayWeather(data) {
 //Function to display clear error messages to the user
 
 function showError(message) {
-    weatherResult.innerHTML = '<p class="error-message">${message}</p>';
+    weatherResult.innerHTML = '<p class="error-message">Please check your city</p>';
 }
 
